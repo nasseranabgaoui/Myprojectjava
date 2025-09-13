@@ -1,9 +1,79 @@
 import java.util.Scanner;
 
-class Demo {
+public class Calculatrice {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String name = sc.nextLine();
-        System.out.println("Name: "+name);
+        Scanner scanner = new Scanner(System.in);
+        boolean continuer = true;
+
+        System.out.println("Bienvenue dans la calculatrice Java !");
+
+        while (continuer) {
+            System.out.println("\nChoisissez une opération :");
+            System.out.println("1 - Addition (+)");
+            System.out.println("2 - Soustraction (-)");
+            System.out.println("3 - Multiplication (*)");
+            System.out.println("4 - Division (/)");
+            System.out.println("5 - Modulo (%)");
+            System.out.println("6 - Puissance (^)");
+
+            System.out.print("Votre choix : ");
+            int choix = scanner.nextInt();
+
+            System.out.print("Entrez le premier nombre : ");
+            double num1 = scanner.nextDouble();
+
+            System.out.print("Entrez le deuxième nombre : ");
+            double num2 = scanner.nextDouble();
+
+            double resultat = 0;
+            boolean valide = true;
+
+            switch (choix) {
+                case 1:
+                    resultat = num1 + num2;
+                    break;
+                case 2:
+                    resultat = num1 - num2;
+                    break;
+                case 3:
+                    resultat = num1 * num2;
+                    break;
+                case 4:
+                    if (num2 != 0) {
+                        resultat = num1 / num2;
+                    } else {
+                        System.out.println("Erreur : division par zéro !");
+                        valide = false;
+                    }
+                    break;
+                case 5:
+                    if (num2 != 0) {
+                        resultat = num1 % num2;
+                    } else {
+                        System.out.println("Erreur : division par zéro !");
+                        valide = false;
+                    }
+                    break;
+                case 6:
+                    resultat = Math.pow(num1, num2);
+                    break;
+                default:
+                    System.out.println("Choix invalide !");
+                    valide = false;
+            }
+
+            if (valide) {
+                System.out.println("Le résultat est : " + resultat);
+            }
+
+            System.out.print("\nVoulez-vous continuer ? (oui/non) : ");
+            String rep = scanner.next();
+            if (rep.equalsIgnoreCase("non")) {
+                continuer = false;
+                System.out.println("Merci d'avoir utilisé la calculatrice !");
+            }
+        }
+
+        scanner.close();
     }
 }
